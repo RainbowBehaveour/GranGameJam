@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public float current_health = 100.0f;
     public float damage = 1.0f;
     public float fireRate = 0.5f;
+    public float rotation_speed = 0.05f;
 
     public GameObject bullet;
     private Camera cam;
@@ -45,14 +46,16 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position += movement*speed;
-        transform.rotation = Quaternion.Euler(90, rot_angle, 0);
+        Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
 
        
 
         //Create Shoot
         if ((Input.GetMouseButtonDown(0) || MouseRepeat) && canShoot)
         {
-            CreateBullet();
+            CreateBullet(mouse_quaternion);
             canShoot = false;
             lastTimeCreatedBullet = Time.fixedTime;
         }
@@ -82,16 +85,17 @@ public class PlayerController : MonoBehaviour {
 
 
     }
-    void CreateBullet()
+    void CreateBullet(Quaternion rotation)
     {
-        GameObject new_bullet = Instantiate(bullet, transform.position, transform.rotation);
+        Vector3 spawn_pos = transform.position + transform.up;
+        GameObject new_bullet = Instantiate(bullet, spawn_pos, transform.rotation);
         Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
-        rb.velocity = direction * bullet_speed;
+        rb.velocity = transform.up * bullet_speed;
     }
 
     //Calculate Direction between Mouse & Player owo
-   void CalculateDirection()
+    void CalculateDirection()
     {
         Vector2 mousePos = Vector2.zero;
 
@@ -101,6 +105,7 @@ public class PlayerController : MonoBehaviour {
         direction.x = Input.mousePosition.x - player_screenPos.x;
         direction.y = 0f;
         direction.z = Input.mousePosition.y - player_screenPos.y;
+        
         direction.Normalize();
     }
 
