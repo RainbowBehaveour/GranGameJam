@@ -9,18 +9,23 @@ public class PlayerController : MonoBehaviour {
     public float max_health = 100.0f;
     public float current_health = 100.0f;
     public float damage = 1.0f;
+    public float fireRate = 0.5f;
 
     public GameObject bullet;
     private Camera cam;
     Vector3 direction = Vector3.zero;
     Vector3 player_screenPos = Vector3.zero;
 
+    bool MouseRepeat = false;
+    bool canShoot = true;
+    float lastTimeCreatedBullet;
     // Use this for initialization
     void Start ()
     {
         cam = Camera.main;
     }
 	
+  
 	// Update is called once per frame
 	void Update () {
 
@@ -45,13 +50,38 @@ public class PlayerController : MonoBehaviour {
        
 
         //Create Shoot
-        if (Input.GetMouseButtonDown(0))
+        if ((Input.GetMouseButtonDown(0) || MouseRepeat) && canShoot)
         {
             CreateBullet();
+            canShoot = false;
+            lastTimeCreatedBullet = Time.fixedTime;
+        }
+
+        if(!canShoot)
+        {
+            float currentTime = Time.fixedTime - lastTimeCreatedBullet;
+            if(currentTime>=fireRate)
+            {
+                canShoot = true;
+            }
+            
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            MouseRepeat = false;
         }
 
 	}
 
+    private void LateUpdate()
+    {
+        if (Input.GetMouseButtonDown(0) && MouseRepeat == false)
+            {
+              MouseRepeat = true;
+            }
+
+
+    }
     void CreateBullet()
     {
         GameObject new_bullet = Instantiate(bullet, transform.position, transform.rotation);
