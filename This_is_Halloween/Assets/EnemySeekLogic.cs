@@ -43,11 +43,9 @@ public class EnemySeekLogic : MonoBehaviour {
                 damage_recieved = (int)player.GetComponent<PlayerAttack>().damage * (int)player.GetComponent<PlayerAttack>().damage_multiplier;
 
             current_hp -= damage_recieved;
-<<<<<<< HEAD
 
             if (current_hp <= 0)
             {
-                Destroy(collision.gameObject);
 
                 player.GetComponent<LevelSystem>().GetExperience(10);
 
@@ -58,15 +56,7 @@ public class EnemySeekLogic : MonoBehaviour {
             }
 
             Destroy(collision.gameObject);
-
-=======
-            Destroy(collision.gameObject);
             
-        }
-        if (current_hp <= 0)
-        {
-            Destroy(gameObject);
->>>>>>> 89d2ce9872dacd58fc0cecbdb9f22bc5a4feeea0
         }
     }
 }
