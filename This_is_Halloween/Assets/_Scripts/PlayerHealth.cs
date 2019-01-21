@@ -34,10 +34,6 @@ public class PlayerHealth : MonoBehaviour {
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            TakeDamage(1);
-        }
 	}
 
     public void TakeDamage(int amount)

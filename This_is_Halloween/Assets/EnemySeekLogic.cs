@@ -6,6 +6,7 @@ using NodeCanvas.Framework;
 public class EnemySeekLogic : MonoBehaviour {
     public int hp = 100;
     public int damage = 1;
+    public float radius = 30;
 
     Blackboard my_board;
     GameObject player;
@@ -19,7 +20,7 @@ public class EnemySeekLogic : MonoBehaviour {
 	void Update () {
         Vector3 distance_from_player;
         distance_from_player = player.transform.position - transform.position;
-        if (distance_from_player.magnitude <= GetComponent<SphereCollider>().radius)
+        if (distance_from_player.magnitude <= radius)
         {
             my_board["target"] = GameObject.FindGameObjectWithTag("Player").transform.position;
             Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);
@@ -34,7 +35,7 @@ public class EnemySeekLogic : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            hp -= (int)player.GetComponent<PlayerController>().damage;
+            hp -= (int)player.GetComponent<PlayerAttack>().damage;
             Destroy(collision.gameObject);
         }
     }

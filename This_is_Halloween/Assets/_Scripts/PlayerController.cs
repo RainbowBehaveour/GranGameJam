@@ -5,21 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 1.0f;
-    public float bullet_speed = 1.0f;
-    public float max_health = 100.0f;
-    public float current_health = 100.0f;
-    public float damage = 1.0f;
-    public float fireRate = 0.5f;
     public float rotation_speed = 0.05f;
 
-    public GameObject bullet;
     private Camera cam;
     Vector3 direction = Vector3.zero;
     Vector3 player_screenPos = Vector3.zero;
 
-    bool MouseRepeat = false;
-    bool canShoot = true;
-    float lastTimeCreatedBullet;
+
     // Use this for initialization
     void Start ()
     {
@@ -50,49 +42,7 @@ public class PlayerController : MonoBehaviour {
 
         transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
 
-       
-
-        //Create Shoot
-        if ((Input.GetMouseButtonDown(0) || MouseRepeat) && canShoot)
-        {
-            CreateBullet(mouse_quaternion);
-            canShoot = false;
-            lastTimeCreatedBullet = Time.fixedTime;
-        }
-
-        if(!canShoot)
-        {
-            float currentTime = Time.fixedTime - lastTimeCreatedBullet;
-            if(currentTime>=fireRate)
-            {
-                canShoot = true;
-            }
-            
-        }
-        if(Input.GetMouseButtonUp(0))
-        {
-            MouseRepeat = false;
-        }
-
 	}
-
-    private void LateUpdate()
-    {
-        if (Input.GetMouseButtonDown(0) && MouseRepeat == false)
-            {
-              MouseRepeat = true;
-            }
-
-
-    }
-    void CreateBullet(Quaternion rotation)
-    {
-        Vector3 spawn_pos = transform.position + transform.up;
-        GameObject new_bullet = Instantiate(bullet, spawn_pos, transform.rotation);
-        Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
-
-        rb.velocity = transform.up * bullet_speed;
-    }
 
     //Calculate Direction between Mouse & Player owo
     void CalculateDirection()
