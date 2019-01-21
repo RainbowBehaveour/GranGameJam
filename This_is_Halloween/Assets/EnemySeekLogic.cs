@@ -6,6 +6,8 @@ using NodeCanvas.Framework;
 public class EnemySeekLogic : MonoBehaviour {
     Blackboard my_board;
     GameObject player;
+    int hp = 100;
+    int damage = 1;
 	// Use this for initialization
 	void Start () {
         my_board = GetComponent<Blackboard>();
@@ -21,5 +23,17 @@ public class EnemySeekLogic : MonoBehaviour {
             my_board["target"] = GameObject.FindGameObjectWithTag("Player").transform.position;
             Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);
         }
+        else
+        {
+            my_board["target"] = transform.position;
+        }
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            hp -= 10;
+        }
+    }
 }
