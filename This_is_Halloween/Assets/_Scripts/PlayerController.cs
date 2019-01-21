@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 1.0f;
+    public GameObject bullet;
 
 	// Use this for initialization
 	void Start ()
     {
-        
+        bullet = null;
 	}
 	
 	// Update is called once per frame
