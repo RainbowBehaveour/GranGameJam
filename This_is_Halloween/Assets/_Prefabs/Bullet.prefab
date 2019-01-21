@@ -56,7 +56,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &65699133710591874
 BoxCollider:
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04fbe45bc979044da4f1a8901b383eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxDistance: 5
 --- !u!212 &212623671515384752
 SpriteRenderer:
   m_ObjectHideFlags: 1
