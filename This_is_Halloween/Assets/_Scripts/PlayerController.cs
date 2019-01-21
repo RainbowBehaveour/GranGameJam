@@ -9,18 +9,24 @@ public class PlayerController : MonoBehaviour {
     public float max_health = 100.0f;
     public float current_health = 100.0f;
     public float damage = 1.0f;
+    public float fireRate = 0.5f;
+    public float rotation_speed = 0.05f;
 
     public GameObject bullet;
     private Camera cam;
     Vector3 direction = Vector3.zero;
     Vector3 player_screenPos = Vector3.zero;
 
+    bool MouseRepeat = false;
+    bool canShoot = true;
+    float lastTimeCreatedBullet;
     // Use this for initialization
     void Start ()
     {
         cam = Camera.main;
     }
 	
+  
 	// Update is called once per frame
 	void Update () {
 
@@ -40,28 +46,56 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position += movement*speed;
-        transform.rotation = Quaternion.Euler(90, rot_angle, 0);
+        Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
 
        
 
         //Create Shoot
-        if (Input.GetMouseButtonDown(0))
+        if ((Input.GetMouseButtonDown(0) || MouseRepeat) && canShoot)
         {
-            CreateBullet();
+            CreateBullet(mouse_quaternion);
+            canShoot = false;
+            lastTimeCreatedBullet = Time.fixedTime;
+        }
+
+        if(!canShoot)
+        {
+            float currentTime = Time.fixedTime - lastTimeCreatedBullet;
+            if(currentTime>=fireRate)
+            {
+                canShoot = true;
+            }
+            
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            MouseRepeat = false;
         }
 
 	}
 
-    void CreateBullet()
+    private void LateUpdate()
     {
-        GameObject new_bullet = Instantiate(bullet, transform.position, transform.rotation);
+        if (Input.GetMouseButtonDown(0) && MouseRepeat == false)
+            {
+              MouseRepeat = true;
+            }
+
+
+    }
+    void CreateBullet(Quaternion rotation)
+    {
+        Vector3 spawn_pos = transform.position + transform.up;
+        GameObject new_bullet = Instantiate(bullet, spawn_pos, transform.rotation);
         Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
-        rb.velocity = direction * bullet_speed;
+        rb.velocity = transform.up * bullet_speed;
     }
 
     //Calculate Direction between Mouse & Player owo
-   void CalculateDirection()
+    void CalculateDirection()
     {
         Vector2 mousePos = Vector2.zero;
 
@@ -71,6 +105,7 @@ public class PlayerController : MonoBehaviour {
         direction.x = Input.mousePosition.x - player_screenPos.x;
         direction.y = 0f;
         direction.z = Input.mousePosition.y - player_screenPos.y;
+        
         direction.Normalize();
     }
 
