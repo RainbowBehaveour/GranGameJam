@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public int startingHealth = 100;
+    public int maxHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
     public Image damageImage;
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        currentHealth = startingHealth;
+        currentHealth = maxHealth;
         healthSlider.value = currentHealth;
     }
 	
