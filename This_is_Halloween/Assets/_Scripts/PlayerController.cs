@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour {
             rot_angle = -rot_angle;
         }
 
-        transform.position += movement*speed;
+        transform.position += transform.up*moveVertical * speed;
+        
         Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
