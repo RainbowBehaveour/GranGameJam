@@ -53,6 +53,8 @@ public class EnemySeekLogic : MonoBehaviour {
                 {
                     player.GetComponent<LevelSystem>().LevelUp(0.1f, 0.1f, 0.2f, 20);
                 }
+
+                Destroy(gameObject);
             }
 
             Destroy(collision.gameObject);
