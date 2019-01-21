@@ -902,6 +902,7 @@ MonoBehaviour:
   current_experience: 0
   current_level: 1
   levelSlider: {fileID: 333642}
+  currentLevel: {fileID: 1901821296}
 --- !u!1 &1026471041
 GameObject:
   m_ObjectHideFlags: 0
