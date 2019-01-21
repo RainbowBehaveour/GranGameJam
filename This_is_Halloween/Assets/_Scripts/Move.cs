@@ -100,11 +100,11 @@ public class Move : MonoBehaviour {
 		Mathf.Clamp(rotation, -max_rot_velocity, max_rot_velocity);
 
 		// rotate the arrow
-		float angle = Mathf.Atan2(movement.x, movement.z);
-		aim.transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.up);
+		//float angle = Mathf.Atan2(movement.x, movement.z);
+		//aim.transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.up);
 
 		// strech it
-		arrow.value = movement.magnitude * 4;
+		//arrow.value = movement.magnitude * 4;
 
 		// final rotate
 		transform.rotation *= Quaternion.AngleAxis(rotation * Time.deltaTime, Vector3.up);
