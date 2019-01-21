@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NodeCanvas.Framework;
+using UnityEngine.AI;
 
 public class EnemySeekLogic : MonoBehaviour {
     public int max_hp = 100;
@@ -11,10 +12,13 @@ public class EnemySeekLogic : MonoBehaviour {
 
     Blackboard my_board;
     GameObject player;
+    NavMeshAgent agent;
+
 	// Use this for initialization
 	void Start () {
         my_board = GetComponent<Blackboard>();
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
         current_hp = max_hp;
 	}
 	
@@ -22,14 +26,14 @@ public class EnemySeekLogic : MonoBehaviour {
 	void Update () {
         Vector3 distance_from_player;
         distance_from_player = player.transform.position - transform.position;
+
         if (distance_from_player.magnitude <= radius)
         {
-            my_board["target"] = GameObject.FindGameObjectWithTag("Player").transform.position;
-            Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);
+            agent.SetDestination(player.transform.position);
         }
         else
         {
-            my_board["target"] = transform.position;
+            agent.SetDestination(transform.position);;
         }
 	}
 

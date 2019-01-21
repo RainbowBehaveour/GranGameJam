@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65342147700343864}
   - component: {fileID: 54685600388084556}
   m_Layer: 0
-  m_Name: EnemySeekFast
+  m_Name: EnemySeekCharger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86df46ca5d23a60488f7c3cabbe12d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_hp: 50
-  current_hp: 50
+  max_hp: 200
+  current_hp: 0
   damage: 1
   radius: 30
 --- !u!195 &195285546940598572
@@ -124,7 +124,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 14
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
