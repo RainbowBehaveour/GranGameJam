@@ -4,7 +4,8 @@ using UnityEngine;
 using NodeCanvas.Framework;
 
 public class EnemySeekLogic : MonoBehaviour {
-    public int hp = 100;
+    public int max_hp = 100;
+    public int current_hp;
     public int damage = 1;
     public float radius = 30;
 
@@ -14,6 +15,7 @@ public class EnemySeekLogic : MonoBehaviour {
 	void Start () {
         my_board = GetComponent<Blackboard>();
         player = GameObject.FindGameObjectWithTag("Player");
+        current_hp = max_hp;
 	}
 	
 	// Update is called once per frame
@@ -35,8 +37,17 @@ public class EnemySeekLogic : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            hp -= (int)player.GetComponent<PlayerAttack>().damage;
-            Destroy(collision.gameObject);
+            int damage_recieved = (int)player.GetComponent<PlayerAttack>().damage;
+
+            if (player.GetComponent<PlayerAttack>().counter == 3 && player.GetComponent<PlayerAttack>().hability_doubledamage)
+                damage_recieved = (int)player.GetComponent<PlayerAttack>().damage * (int)player.GetComponent<PlayerAttack>().damage_multiplier;
+
+            current_hp -= damage_recieved;
+
+            if (current_hp <= 0)
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

@@ -14,6 +14,10 @@ public class PlayerAttack : MonoBehaviour {
     bool canShoot = true;
     float lastTimeCreatedBullet;
 
+    public bool hability_doubledamage;
+    public  int counter = 0;
+    public float damage_multiplier = 1.0f;
+
     // Use this for initialization
     void Start () {
        
@@ -22,11 +26,11 @@ public class PlayerAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
         //Create Shoot
         if ((Input.GetMouseButtonDown(0) || MouseRepeat) && canShoot)
         {
            CreateBullet(bullet_speed);
+           counter++;
            canShoot = false;
            lastTimeCreatedBullet = Time.fixedTime;
         }
@@ -62,4 +66,5 @@ public class PlayerAttack : MonoBehaviour {
 
         rb.velocity = transform.up * bullet_speed;
     }
+
 }
