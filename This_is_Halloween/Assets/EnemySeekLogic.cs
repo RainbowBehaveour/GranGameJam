@@ -43,11 +43,12 @@ public class EnemySeekLogic : MonoBehaviour {
                 damage_recieved = (int)player.GetComponent<PlayerAttack>().damage * (int)player.GetComponent<PlayerAttack>().damage_multiplier;
 
             current_hp -= damage_recieved;
-
-            if (current_hp <= 0)
-            {
-                Destroy(collision.gameObject);
-            }
+            Destroy(collision.gameObject);
+            
+        }
+        if (current_hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
