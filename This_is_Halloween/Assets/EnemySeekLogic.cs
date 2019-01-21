@@ -4,10 +4,11 @@ using UnityEngine;
 using NodeCanvas.Framework;
 
 public class EnemySeekLogic : MonoBehaviour {
+    public int hp = 100;
+    public int damage = 1;
+
     Blackboard my_board;
     GameObject player;
-    int hp = 100;
-    int damage = 1;
 	// Use this for initialization
 	void Start () {
         my_board = GetComponent<Blackboard>();
@@ -33,7 +34,8 @@ public class EnemySeekLogic : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            hp -= 10;
+            hp -= (int)player.GetComponent<PlayerController>().damage;
+            Destroy(collision.gameObject);
         }
     }
 }
