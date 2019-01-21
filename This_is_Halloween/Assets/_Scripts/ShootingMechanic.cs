@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ShootingMechanic : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    GameObject player;
+    Vector3 direction = Vector3.zero;
+
+    // Use this for initialization
+    void Start () {
         
-	}
+    }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+      
+
+    }
 }
