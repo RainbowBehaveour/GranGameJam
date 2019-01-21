@@ -9,13 +9,15 @@ public class EnemySeekLogic : MonoBehaviour {
     public int current_hp;
     public int damage = 1;
     public float radius = 30;
+    public float attack_speed = 1.0f;
 
     Blackboard my_board;
     GameObject player;
     NavMeshAgent agent;
-
-	// Use this for initialization
-	void Start () {
+    float timepassed;
+    
+    // Use this for initialization
+    void Start () {
         my_board = GetComponent<Blackboard>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
@@ -63,6 +65,21 @@ public class EnemySeekLogic : MonoBehaviour {
 
             Destroy(collision.gameObject);
             
+        }
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("hola");
+            PlayerHealth player_stats = collision.gameObject.GetComponent<PlayerHealth>();
+           
+            float currentTime = Time.fixedTime - timepassed;
+            if (currentTime >= attack_speed)
+            {
+                timepassed = Time.fixedTime;
+                player_stats.currentHealth -= damage;
+            }
         }
     }
 }
