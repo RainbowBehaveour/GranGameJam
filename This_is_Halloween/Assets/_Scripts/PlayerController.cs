@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject bullet;
     private Camera cam;
     Vector3 direction = Vector3.zero;
+    Vector3 player_screenPos = Vector3.zero;
 
     // Use this for initialization
     void Start ()
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour {
 
         CalculateDirection();
         float rot_angle = (Mathf.Acos(direction.z) * 180) / Mathf.PI;
+
+        if(Input.mousePosition.x < player_screenPos.x)
+        {
+            rot_angle = -rot_angle;
+        }
 
         transform.position += movement*speed;
         transform.rotation = Quaternion.Euler(90, rot_angle, 0);
@@ -58,14 +64,13 @@ public class PlayerController : MonoBehaviour {
    void CalculateDirection()
     {
         Vector2 mousePos = Vector2.zero;
-        Vector3 player_Pos = Vector3.zero;
 
         mousePos.Set(Input.mousePosition.x, Input.mousePosition.y);
-        player_Pos = cam.WorldToScreenPoint(transform.position);
+        player_screenPos = cam.WorldToScreenPoint(transform.position);
 
-        direction.x = Input.mousePosition.x - player_Pos.x;
+        direction.x = Input.mousePosition.x - player_screenPos.x;
         direction.y = 0f;
-        direction.z = Input.mousePosition.y - player_Pos.y;
+        direction.z = Input.mousePosition.y - player_screenPos.y;
         direction.Normalize();
     }
 
