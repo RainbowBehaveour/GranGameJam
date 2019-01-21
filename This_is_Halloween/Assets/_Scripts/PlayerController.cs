@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 		float moveVertical = Input.GetAxis("Vertical");
 
 		Vector3 movement = Vector3.zero;
-        movement.Set(moveHorizontal, moveVertical, 0f);
+        movement.Set(moveHorizontal, 0f, moveVertical);
 
         transform.position += movement*speed;
 
@@ -40,19 +40,20 @@ public class PlayerController : MonoBehaviour {
         GameObject new_bullet = Instantiate(bullet, transform.position, transform.rotation);
 
         Vector2 mousePos = Vector2.zero;
-        Vector3 point = Vector3.zero;
+        Vector3 player_Pos = Vector3.zero;
         Vector3 direction = Vector3.zero;
 
         mousePos.Set(Input.mousePosition.x, Input.mousePosition.y);
-        point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z));
-        direction.x = point.x - transform.position.x;
-        direction.y = point.y - transform.position.y;
-        direction.z = 0;
+        player_Pos = cam.WorldToScreenPoint(transform.position);
+        Debug.Log(player_Pos);
+        Debug.Log(Input.mousePosition);
+        direction.x = Input.mousePosition.x - player_Pos.x;
+        direction.y = 0f;
+        direction.z = Input.mousePosition.y - player_Pos.y;
 
         direction.Normalize();
-
-
-        Rigidbody2D rb = new_bullet.GetComponent<Rigidbody2D>();
+       // Debug.Log(direction);
+        Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
         rb.velocity = direction * bullet_speed;
     }
