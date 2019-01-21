@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 
         Rigidbody2D rb = new_bullet.GetComponent<Rigidbody2D>();
 
-        rb.velocity = direction * bullet_speed * Time.deltaTime;
+        rb.velocity = direction * bullet_speed;
     }
 
    
