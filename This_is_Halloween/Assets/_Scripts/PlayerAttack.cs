@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour {
 
     public GameObject bullet;
+
+    public Text attack;
+    public Text health;
+    public Text fire_rate;
+    public Text speed;
 
     public float bullet_speed = 1.0f;
     public float damage = 1.0f;
@@ -20,7 +26,7 @@ public class PlayerAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       
+        UpdatePanel();
 	}
 	
 	// Update is called once per frame
@@ -48,6 +54,7 @@ public class PlayerAttack : MonoBehaviour {
         {
             MouseRepeat = false;
         }
+
     }
 
     private void LateUpdate()
@@ -65,6 +72,14 @@ public class PlayerAttack : MonoBehaviour {
         Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
         rb.velocity = transform.up * bullet_speed;
+    }
+
+    public void UpdatePanel()
+    {
+        attack.text = "Attack: " + damage;
+        health.text = "Health: " + gameObject.GetComponent<PlayerHealth>().maxHealth;
+        fire_rate.text = "Fire rate: " + fireRate;
+        speed.text = "Speed: " + gameObject.GetComponent<PlayerController>().speed;
     }
 
 }
