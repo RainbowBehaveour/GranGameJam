@@ -57,7 +57,7 @@ public class EnemySeekLogic : MonoBehaviour {
 
                 if (player.GetComponent<LevelSystem>().current_experience >= player.GetComponent<LevelSystem>().max_experience)
                 {
-                    player.GetComponent<LevelSystem>().LevelUp(0.1f, 0.1f, 0.2f, 20);
+                    player.GetComponent<LevelSystem>().LevelUp(0.1f, 0.1f, 0.01f, 0.3f, 0.2f, 20);
                 }
 
                 Destroy(gameObject);

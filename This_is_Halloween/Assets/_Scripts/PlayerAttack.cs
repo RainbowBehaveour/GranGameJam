@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour {
     public Text health;
     public Text fire_rate;
     public Text speed;
+    public Text bullet_speed_text;
+    public Text rotation_speed;
 
     public float bullet_speed = 1.0f;
     public float damage = 1.0f;
@@ -76,10 +78,13 @@ public class PlayerAttack : MonoBehaviour {
 
     public void UpdatePanel()
     {
-        attack.text = "Attack: " + damage;
+        attack.text = "Damage: " + damage;
         health.text = "Health: " + gameObject.GetComponent<PlayerHealth>().maxHealth;
         fire_rate.text = "Fire rate: " + fireRate;
         speed.text = "Speed: " + gameObject.GetComponent<PlayerController>().speed;
+        bullet_speed_text.text = "Bullet Speed: " + bullet_speed;
+        rotation_speed.text = "Rotation Speed: " + gameObject.GetComponent<PlayerController>().rotation_speed;
+
     }
 
 }
