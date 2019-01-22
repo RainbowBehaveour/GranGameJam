@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 1.0f;
+    public float dash_speed = 1.0f;
     public float rotation_speed = 0.05f;
 
     private Camera cam;
