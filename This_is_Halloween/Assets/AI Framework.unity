@@ -535,8 +535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.68425673, y: 0.67800003}
   m_AnchorMax: {x: 1, y: 0.883}
-  m_AnchoredPosition: {x: -30.94954, y: -36.18744}
-  m_SizeDelta: {x: 81.19791, y: 27.88565}
+  m_AnchoredPosition: {x: -2.4000244, y: -36.18744}
+  m_SizeDelta: {x: 138.4, y: 27.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232885395
 MonoBehaviour:
@@ -1148,6 +1148,8 @@ MonoBehaviour:
   levelSlider: {fileID: 333642}
   currentLevel: {fileID: 1901821296}
   levelBackground: {fileID: 1490284682}
+  button_dash: {fileID: 1413283839}
+  button_damage: {fileID: 1122402233}
 --- !u!95 &870693097
 Animator:
   serializedVersion: 3
@@ -1522,7 +1524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1122402234
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1637,6 +1639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51218cfdee891af4dbfd18e96e67c913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button_dash: {fileID: 1413283839}
+  button_damage: {fileID: 1122402233}
 --- !u!1 &1192355132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1413283840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2176,6 +2180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51218cfdee891af4dbfd18e96e67c913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button_dash: {fileID: 1413283839}
+  button_damage: {fileID: 1122402233}
 --- !u!1 &1429872021
 GameObject:
   m_ObjectHideFlags: 0

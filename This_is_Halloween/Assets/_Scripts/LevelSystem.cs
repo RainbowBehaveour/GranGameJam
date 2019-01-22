@@ -17,8 +17,12 @@ public class LevelSystem : MonoBehaviour {
     PlayerHealth playerHealth;
     PlayerController playerController;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject button_dash;
+    public GameObject button_damage;
+
+
+    // Use this for initialization
+    void Start () {
         current_level = 1;
         current_experience = 0;
         levelSlider.maxValue = max_experience;
@@ -37,7 +41,7 @@ public class LevelSystem : MonoBehaviour {
             GetExperience(10);
             if(current_experience>= max_experience)
             {
-                LevelUp(0.1f, 0.1f, 0.01f, 0.3f, 0.2f, 20);
+                LevelUp(0.1f, 0.1f, 0.01f, 0.05f, 0.2f, 20);
             }
         }
         if (Input.GetMouseButtonDown(1))
@@ -52,7 +56,7 @@ public class LevelSystem : MonoBehaviour {
     public void LevelUp(float bullet_speed, float rotation_speed, float player_speed, float fire_rate, float damage, int max_health)
     {
         playerAttack.bullet_speed += bullet_speed;
-        playerAttack.fireRate += fire_rate;
+        playerAttack.fireRate -= fire_rate;
         playerAttack.damage += damage;
         playerHealth.maxHealth += max_health;
         playerHealth.currentHealth = playerHealth.maxHealth;
@@ -74,6 +78,10 @@ public class LevelSystem : MonoBehaviour {
 
         playerHealth.healthSlider.maxValue = playerHealth.maxHealth;
         playerHealth.healthSlider.value = playerHealth.currentHealth;
+
+        button_damage.SetActive(true);
+        button_dash.SetActive(true);
+
     }
 
     public void GetExperience(int experience)
