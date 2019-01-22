@@ -8,10 +8,12 @@ public class LevelSystem : MonoBehaviour {
     public int max_experience;
     public int current_experience;
     public int current_level = 1;
+    public int score = 0;
 
     public Slider levelSlider;
     public Text currentLevel;
     public Text levelBackground;
+    public Text score_text;
 
     PlayerAttack playerAttack;
     PlayerHealth playerHealth;
@@ -27,6 +29,7 @@ public class LevelSystem : MonoBehaviour {
         levelSlider.maxValue = max_experience;
         currentLevel.text = current_level.ToString();
         levelBackground.text = current_level.ToString();
+        score_text.text = "Score: " + score.ToString();
 
         playerAttack = GetComponent<PlayerAttack>();
         playerHealth = GetComponent<PlayerHealth>();

@@ -79,6 +79,8 @@ public class EnemySeekLogic : MonoBehaviour {
             {
 
                 player.GetComponent<LevelSystem>().GetExperience(20);
+                player.GetComponent<LevelSystem>().score += 20;
+                player.GetComponent<LevelSystem>().score_text.text = "Score: " + player.GetComponent<LevelSystem>().score;
 
                 if (player.GetComponent<LevelSystem>().current_experience >= player.GetComponent<LevelSystem>().max_experience)
                 {
