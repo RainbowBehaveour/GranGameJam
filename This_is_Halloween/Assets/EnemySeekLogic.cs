@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using NodeCanvas.Framework;
 using UnityEngine.AI;
 
@@ -64,7 +65,6 @@ public class EnemySeekLogic : MonoBehaviour {
  
         }
         
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -92,9 +92,10 @@ public class EnemySeekLogic : MonoBehaviour {
 
                 Destroy(gameObject);
                 player.GetComponent<PlayerController>().numEnemiesKilled += 1;
-                if(player.GetComponent<PlayerController>().numEnemiesKilled== player.GetComponent<PlayerController>().maxEnemies)
+                if(player.GetComponent<PlayerController>().numEnemiesKilled >= player.GetComponent<PlayerController>().maxEnemies)
                 {
                     player.GetComponent<PlayerController>().youWinText.SetActive(true);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
 
 
