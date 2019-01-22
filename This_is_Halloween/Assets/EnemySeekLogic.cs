@@ -53,7 +53,7 @@ public class EnemySeekLogic : MonoBehaviour {
             if (current_hp <= 0)
             {
 
-                player.GetComponent<LevelSystem>().GetExperience(10);
+                player.GetComponent<LevelSystem>().GetExperience(20);
 
                 if (player.GetComponent<LevelSystem>().current_experience >= player.GetComponent<LevelSystem>().max_experience)
                 {
@@ -67,6 +67,7 @@ public class EnemySeekLogic : MonoBehaviour {
             
         }
     }
+
     void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -78,7 +79,7 @@ public class EnemySeekLogic : MonoBehaviour {
             if (currentTime >= attack_speed)
             {
                 timepassed = Time.fixedTime;
-                player_stats.currentHealth -= damage;
+                player_stats.TakeDamage(damage);                
             }
         }
     }

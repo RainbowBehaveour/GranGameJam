@@ -34,17 +34,15 @@ public class LevelSystem : MonoBehaviour {
 	void Update () {
         if(Input.GetMouseButtonDown(0))
         {
-            GetExperience(10);
-            if(current_experience>= max_experience)
+            //GetExperience(10);
+            if(current_experience >= max_experience)
             {
                 LevelUp(0.1f, 0.1f, 0.01f, 0.3f, 0.2f, 20);
             }
         }
         if (Input.GetMouseButtonDown(1))
-        {
-            
-            playerHealth.TakeDamage(10);
-            
+        {            
+            playerHealth.TakeDamage(10);            
         }
 
     }
