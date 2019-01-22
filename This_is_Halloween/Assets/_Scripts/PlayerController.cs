@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     float dash_time = 0.3f;
     bool isDash = false;
     float lastSpaceDown;
+    
+    float currentCooldown;
 
     public float speed = 1.0f;
     public float rotation_speed = 0.05f;
+    public float dashCooldown = 0.5f;
     public GameObject playerSprite;
 
 
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         anim = playerSprite.GetComponent<Animator>();
+        currentCooldown = 3.0f;
     }
 
 
@@ -54,11 +58,13 @@ public class PlayerController : MonoBehaviour
         Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
-
-        if (Input.GetKeyDown(KeyCode.Space) && !isDash)
+        currentCooldown = Time.fixedTime - lastSpaceDown;
+        
+        if (Input.GetKeyDown(KeyCode.Space) && !isDash && currentCooldown >= dashCooldown)
         {
             isDash = true;
             lastSpaceDown = Time.fixedTime;
+            currentCooldown = dashCooldown;
         }
 
         if (isDash)

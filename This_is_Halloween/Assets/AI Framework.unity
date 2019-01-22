@@ -9751,9 +9751,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e072744c5b6e6434b9a3960510afe235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dash_speed: 0.25
+  dash_speed: 0.155
   speed: 0.05
   rotation_speed: 0.05
+  dashCooldown: 1.5
   playerSprite: {fileID: 355767320}
 --- !u!114 &870693091
 MonoBehaviour:
