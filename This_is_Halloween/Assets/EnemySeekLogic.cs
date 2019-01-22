@@ -10,11 +10,13 @@ public class EnemySeekLogic : MonoBehaviour {
     public int damage = 1;
     public float radius = 30;
     public float attack_speed = 1.0f;
+    public float attack_range = 0.5f;
 
     Blackboard my_board;
     GameObject player;
     NavMeshAgent agent;
     float timepassed;
+    bool isAttacking = false;
     
     // Use this for initialization
     void Start () {
@@ -32,12 +34,35 @@ public class EnemySeekLogic : MonoBehaviour {
         if (distance_from_player.magnitude <= radius)
         {
             agent.SetDestination(player.transform.position);
+            if (distance_from_player.magnitude <= attack_range)
+            {
+                isAttacking = true;
+            }
+            else
+            {
+                isAttacking = false;
+            }
+
+            if (isAttacking)
+            {
+                PlayerHealth player_stats = player.GetComponent<PlayerHealth>();
+
+                float currentTime = Time.fixedTime - timepassed;
+                if (currentTime >= attack_speed)
+                {
+                    timepassed = Time.fixedTime;
+                    player_stats.TakeDamage(damage);
+                }
+            }
         }
         else
         {
-            agent.SetDestination(transform.position);;
+            agent.SetDestination(transform.position);
+ 
         }
-	}
+
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -72,15 +97,7 @@ public class EnemySeekLogic : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hola");
-            PlayerHealth player_stats = collision.gameObject.GetComponent<PlayerHealth>();
-           
-            float currentTime = Time.fixedTime - timepassed;
-            if (currentTime >= attack_speed)
-            {
-                timepassed = Time.fixedTime;
-                player_stats.TakeDamage(damage);                
-            }
+
         }
     }
 }
