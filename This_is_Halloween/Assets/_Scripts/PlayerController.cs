@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
 
         anim.SetFloat("Angle", rot_angle);
-        transform.position += transform.up*moveVertical * speed;
+        transform.position += movement * speed/**Time.deltaTime*/;
         
         Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
 
