@@ -9,4 +9,9 @@ public class ChangeScene : MonoBehaviour {
     {
         SceneManager.LoadScene("AI Framework");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
