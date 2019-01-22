@@ -12,18 +12,20 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 1.0f;
     public float rotation_speed = 0.05f;
+    public GameObject playerSprite;
 
-    public Animator animator;
+
     private Camera cam;
 
     Vector3 direction = Vector3.zero;
     Vector3 player_screenPos = Vector3.zero;
-
+    Animator anim;
 
     // Use this for initialization
     void Start()
     {
         cam = Camera.main;
+        anim = playerSprite.GetComponent<Animator>();
     }
 
 
@@ -46,9 +48,9 @@ public class PlayerController : MonoBehaviour
             rot_angle = -rot_angle;
         }
 
-        animator.SetFloat("Angle", rot_angle);
-        transform.position += transform.up * moveVertical * speed;
-
+        anim.SetFloat("Angle", rot_angle);
+        transform.position += transform.up*moveVertical * speed;
+        
         Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, mouse_quaternion, rotation_speed);
