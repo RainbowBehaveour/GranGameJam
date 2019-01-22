@@ -11,19 +11,21 @@ public class EnemySeekLogic : MonoBehaviour {
     public float radius = 30;
     public float attack_speed = 1.0f;
     public float attack_range = 0.5f;
+    public int experience = 10;
 
     Blackboard my_board;
     GameObject player;
     NavMeshAgent agent;
     float timepassed;
     bool isAttacking = false;
-    
+
     // Use this for initialization
     void Start () {
         my_board = GetComponent<Blackboard>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         current_hp = max_hp;
+
 	}
 	
 	// Update is called once per frame
@@ -78,13 +80,13 @@ public class EnemySeekLogic : MonoBehaviour {
             if (current_hp <= 0)
             {
 
-                player.GetComponent<LevelSystem>().GetExperience(20);
-                player.GetComponent<LevelSystem>().score += 20;
+                player.GetComponent<LevelSystem>().GetExperience(experience);
+                player.GetComponent<LevelSystem>().score += experience;
                 player.GetComponent<LevelSystem>().score_text.text = "Score: " + player.GetComponent<LevelSystem>().score;
 
                 if (player.GetComponent<LevelSystem>().current_experience >= player.GetComponent<LevelSystem>().max_experience)
                 {
-                    player.GetComponent<LevelSystem>().LevelUp(0.1f, 0.1f, 0.01f, 0.3f, 0.2f, 20);
+                    player.GetComponent<LevelSystem>().LevelUp(1.0f, 0.1f, 0.01f, 0.005f, 10f, 20);
                 }
 
                 Destroy(gameObject);
