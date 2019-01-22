@@ -6,7 +6,7 @@ public class ShootingMechanic : MonoBehaviour {
 
     // Use this for initialization
     Vector3 startPos = Vector3.zero;
-    public float MaxDistance=5;
+    public float MaxDistance=8;
 
     void Start () {
         startPos = transform.position; 
