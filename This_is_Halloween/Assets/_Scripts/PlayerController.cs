@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     public uint numEnemiesKilled = 0;
+    public uint maxEnemies=20;
     public GameObject youWinText;
     // Use this for initialization
     void Start()

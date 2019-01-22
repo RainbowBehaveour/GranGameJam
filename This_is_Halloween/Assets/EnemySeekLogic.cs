@@ -18,7 +18,7 @@ public class EnemySeekLogic : MonoBehaviour {
     NavMeshAgent agent;
     float timepassed;
     bool isAttacking = false;
-    public uint maxEnemies=20;
+    
    
     // Use this for initialization
     void Start () {
@@ -92,7 +92,7 @@ public class EnemySeekLogic : MonoBehaviour {
 
                 Destroy(gameObject);
                 player.GetComponent<PlayerController>().numEnemiesKilled += 1;
-                if(player.GetComponent<PlayerController>().numEnemiesKilled== maxEnemies)
+                if(player.GetComponent<PlayerController>().numEnemiesKilled== player.GetComponent<PlayerController>().maxEnemies)
                 {
                     player.GetComponent<PlayerController>().youWinText.SetActive(true);
                 }
