@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65342147700343864}
   - component: {fileID: 54685600388084556}
   m_Layer: 0
-  m_Name: EnemySeek
+  m_Name: EnemySeekSwarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,13 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86df46ca5d23a60488f7c3cabbe12d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_hp: 30
+  max_hp: 10
   current_hp: 0
-  damage: 10
+  damage: 1
   radius: 30
-  attack_speed: 1.5
-  attack_range: 1.5
-  experience: 2
+  attack_speed: 0.2
+  attack_range: 1
+  experience: 1
 --- !u!195 &195285546940598572
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -126,12 +126,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1506022422099950}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 7
+  m_Radius: 0.5
+  m_Speed: 4
   m_Acceleration: 7
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

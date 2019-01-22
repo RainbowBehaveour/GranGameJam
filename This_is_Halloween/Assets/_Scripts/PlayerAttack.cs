@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        fx_player = GetComponent<AudioSource>();
+        fx_player = gameObject.GetComponentInChildren<AudioSource>();
         UpdatePanel();
 
         fx_player.Play();
@@ -80,7 +80,6 @@ public class PlayerAttack : MonoBehaviour {
         Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
         rb.velocity = transform.up * bullet_speed;
-        fx_player.clip = fx_throw;
         fx_player.Play();
     }
 
