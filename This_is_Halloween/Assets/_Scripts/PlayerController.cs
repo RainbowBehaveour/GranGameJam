@@ -25,12 +25,14 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     public uint numEnemiesKilled = 0;
+    public GameObject youWinText;
     // Use this for initialization
     void Start()
     {
         cam = Camera.main;
         anim = playerSprite.GetComponent<Animator>();
         currentCooldown = 3.0f;
+        youWinText.SetActive(false);
     }
 
 

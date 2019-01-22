@@ -63,8 +63,8 @@ public class EnemySeekLogic : MonoBehaviour {
             agent.SetDestination(transform.position);
  
         }
-
-
+        
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -94,7 +94,7 @@ public class EnemySeekLogic : MonoBehaviour {
                 player.GetComponent<PlayerController>().numEnemiesKilled += 1;
                 if(player.GetComponent<PlayerController>().numEnemiesKilled== maxEnemies)
                 {
-
+                    player.GetComponent<PlayerController>().youWinText.SetActive(true);
                 }
 
 
