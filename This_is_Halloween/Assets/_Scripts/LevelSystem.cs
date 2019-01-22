@@ -22,6 +22,9 @@ public class LevelSystem : MonoBehaviour {
     public GameObject button_dash;
     public GameObject button_damage;
 
+    public AudioClip fx_lvl_up;
+    public AudioSource fx_ui;
+
 
     // Use this for initialization
     void Start () {        
@@ -34,6 +37,8 @@ public class LevelSystem : MonoBehaviour {
         playerAttack = GetComponent<PlayerAttack>();
         playerHealth = GetComponent<PlayerHealth>();
         playerController = GetComponent<PlayerController>();
+
+        fx_ui = gameObject.transform.GetChild(2).GetComponent<AudioSource>();
     }
 
 
@@ -66,6 +71,7 @@ public class LevelSystem : MonoBehaviour {
         button_damage.SetActive(true);
         button_dash.SetActive(true);
 
+        fx_ui.Play();
     }
 
     public void GetExperience(int experience)

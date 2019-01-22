@@ -18,13 +18,14 @@ public class EnemySeekLogic : MonoBehaviour {
     NavMeshAgent agent;
     float timepassed;
     bool isAttacking = false;
-    
+
     // Use this for initialization
     void Start () {
         my_board = GetComponent<Blackboard>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         current_hp = max_hp;
+
 	}
 	
 	// Update is called once per frame
