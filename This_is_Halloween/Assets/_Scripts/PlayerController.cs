@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     Vector3 player_screenPos = Vector3.zero;
     Animator anim;
 
+    public uint numEnemiesKilled = 0;
     // Use this for initialization
     void Start()
     {

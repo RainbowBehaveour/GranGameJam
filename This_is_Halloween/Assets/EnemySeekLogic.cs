@@ -18,7 +18,8 @@ public class EnemySeekLogic : MonoBehaviour {
     NavMeshAgent agent;
     float timepassed;
     bool isAttacking = false;
-
+    public uint maxEnemies=20;
+   
     // Use this for initialization
     void Start () {
         my_board = GetComponent<Blackboard>();
@@ -90,6 +91,13 @@ public class EnemySeekLogic : MonoBehaviour {
                 }
 
                 Destroy(gameObject);
+                player.GetComponent<PlayerController>().numEnemiesKilled += 1;
+                if(player.GetComponent<PlayerController>().numEnemiesKilled== maxEnemies)
+                {
+
+                }
+
+
             }
 
             Destroy(collision.gameObject);
