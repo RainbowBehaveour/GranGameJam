@@ -7,7 +7,7 @@ public class LevelSystem : MonoBehaviour {
 
     public int max_experience;
     public int current_experience;
-    public int current_level;
+    public int current_level = 1;
 
     public Slider levelSlider;
     public Text currentLevel;
@@ -22,8 +22,7 @@ public class LevelSystem : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-        current_level = 1;
+    void Start () {        
         current_experience = 0;
         levelSlider.maxValue = max_experience;
         currentLevel.text = current_level.ToString();
@@ -38,7 +37,7 @@ public class LevelSystem : MonoBehaviour {
 	void Update () {
         if(Input.GetMouseButtonDown(0))
         {
-            //GetExperience(10);
+            GetExperience(10);
             if(current_experience >= max_experience)
             {
                 LevelUp(0.1f, 0.1f, 0.01f, 0.05f, 0.2f, 20);

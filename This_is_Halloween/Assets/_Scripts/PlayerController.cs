@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetFloat("Angle", rot_angle);
-        transform.position += transform.up * moveVertical * speed;
+        transform.position += movement * speed;//transform.up * moveVertical * speed;
 
         Quaternion mouse_quaternion = Quaternion.Euler(90, rot_angle, 0);
 
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             {
                 isDash = false;
             }
-            transform.position += transform.up * dash_speed;
+            transform.position += movement * dash_speed;
         }
     }
 
