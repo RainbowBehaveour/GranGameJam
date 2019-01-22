@@ -26,9 +26,15 @@ public class PlayerAttack : MonoBehaviour {
     public  int counter = 0;
     public float damage_multiplier = 1.0f;
 
+    public AudioClip fx_throw;
+    public AudioSource fx_player;
+
     // Use this for initialization
     void Start () {
+        fx_player = GetComponent<AudioSource>();
         UpdatePanel();
+
+        fx_player.Play();
 	}
 	
 	// Update is called once per frame
@@ -74,6 +80,8 @@ public class PlayerAttack : MonoBehaviour {
         Rigidbody rb = new_bullet.GetComponent<Rigidbody>();
 
         rb.velocity = transform.up * bullet_speed;
+        fx_player.clip = fx_throw;
+        fx_player.Play();
     }
 
     public void UpdatePanel()
